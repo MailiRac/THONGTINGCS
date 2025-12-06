@@ -1,0 +1,162 @@
+/* ======= Global ======= */
+:root{
+  --max-width: 600px;
+  --footer-height: 64px;
+  --accent: #4CAF50;
+}
+html,body{ height:100%; }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 5px;
+  background-color: #dcdcdc;
+  -webkit-font-smoothing:antialiased;
+  box-sizing: border-box;
+  padding-bottom: calc(var(--footer-height) + 5px); /* chừa chỗ cho footer */
+  display: block;
+}
+
+/* Center container behavior: keep widths consistent with tables */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* ======= Header ngày giờ ======= */
+.datetime-header {
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+  font-size:14px;
+  color:#fff;
+  background-color: var(--accent);
+  padding: 11px 15px;
+  padding-left: 50px; /* cách lề trái 50px */
+  border-radius: 6px;
+  gap: 2px;
+  margin-bottom: 0px;
+}
+.datetime-header i { color: #fff; font-size: 15px; }
+.datetime-header .fa-fallback { /* Unicode fallback, hidden by default */ 
+  display: none;
+  font-size: 18px;
+  color: #fff;
+}
+.datetime-header .dt-text { color: #fff; margin-right: 2px; }
+
+/* ======= Tables ======= */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0px 0;
+  background: #fff;
+  box-sizing: border-box;
+}
+th, td {
+  padding: 4px 6px;
+  text-align: left;
+  border: 1px solid #ddd;
+  word-wrap: break-word;
+  vertical-align: middle;
+  font-size: 12px;
+}
+
+th.header {
+  background-color: var(--accent);
+  color: #171717;
+  text-align: center;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+/* chung cho nhãn (label) */
+td.label {
+  font-weight: bold;
+  width: 35%;
+}
+
+/* label từng bảng (có padding-left để thụt lề text trong ô label) */
+td.platts-label,
+td.gcs-label,
+td.du-bao-label,
+td.trung-binh-label {
+  background-color: #A9A9A9;
+  color: #ffffff;
+  font-size: 12px;
+  padding-left: 50px;
+}
+
+/* giá trị */
+td.value {
+  background-color: #ffffff;
+  color: #000;
+  font-size: 12px;
+  text-align: center; /* can giữa theo yêu cầu */
+}
+
+/* ghi chú */
+.note {
+  font-style: italic;
+  color: #707070;
+  text-align: center;
+  font-size: 8px;  /* Giảm từ 11px (0.6875rem) xuống 10px */
+  background-color: #ffffff;
+  padding: 1px;  /* Giảm từ 6px để ô nhỏ hơn */
+  line-height: 1.5;  /* Giảm từ 1.5 để text gọn hơn */
+}
+
+/* ======= Footer navigation ======= */
+.footer-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--footer-height);
+  background-color: #ffffff;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 12px;
+  color: #707070;
+  z-index: 9999;
+}
+.footer-nav .nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.18s ease;
+  user-select: none;
+}
+.footer-nav .nav-item i {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+.footer-nav .nav-item.active {
+  color: var(--accent);
+}
+
+/* Responsive small tweaks */
+@media (max-width:420px) {
+  .datetime-header { padding-left: 14px; }
+  td.platts-label, td.gcs-label, td.du-bao-label, td.trung-binh-label { padding-left: 18px; }
+  th.header { font-size: 12px; }
+  td, th { font-size: 10px; padding:4px; }
+}
+/* ... (giữ nguyên các style cũ) */
+
+/* Thêm style cho input trong header */
+.datetime-header input.dt-text {
+  background: transparent;  /* Trong suốt để khớp background header */
+  border: none;  /* Xóa border mặc định */
+  color: #fff;  /* Giữ màu trắng */
+  font-size: 14px;  /* Khớp font-size header */
+  width: 80px;  /* Điều chỉnh width để vừa (tăng nếu ngày dài, ví dụ 120px cho ngày, 60px cho giờ) */
+  text-align: left;  /* Canh trái */
+  margin-right: 1px;  /* Giữ margin như cũ */
+}
+
+.datetime-header input.dt-text:focus {
+  outline: none;  /* Xóa outline khi focus để sạch sẽ */
+}
